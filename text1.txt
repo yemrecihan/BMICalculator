@@ -1,0 +1,84 @@
+import tkinter
+
+#WİNDOW
+window= tkinter.Tk ()
+window.title("BMI CALCULATOR")
+window.minsize(450,300)
+
+
+
+
+
+def ındeks_hesap():
+    user_input_kg= my_entry.get()
+    user_input_boy=  my_entry2.get()
+
+    if user_input_boy== "" or user_input_kg =="":
+        result_label.config(text=f"Enter both weight and height !")
+    else :
+        try:
+            x = float(user_input_kg) / (float(user_input_boy)/100)**2
+            result_string=write_result(x)
+            result_label.config(text=result_string)
+        except:
+            result_label.config(text=f"Enter a valid number")
+
+
+
+
+
+#LABEL
+
+my_label= tkinter.Label(text="Enter Your Weight(kg)",font=('Arial',10,'normal'))
+
+my_label.pack()
+
+#ENTRY
+my_entry = tkinter.Entry()
+my_entry.pack()
+
+#LABEL 2
+my_label= tkinter.Label(text="Enter Your Height (cm)",font=('Arial',10,'normal'))
+
+my_label.pack()
+
+#ENTRY2
+my_entry2 = tkinter.Entry()
+
+my_entry2.pack()
+
+
+#BUTTON
+my_button = tkinter.Button(text="Hesapla" ,command= ındeks_hesap)
+
+my_button.pack()
+
+result_label= tkinter.Label()
+result_label.pack()
+
+def write_result (x):
+
+    result_string=f"Your BMI is :{round(x,2)} You are,"
+    if x > 1 and x < 18.5:
+        result_string+="asırı zayıf"
+    elif x > 18.5 and x <= 24.9:
+        result_string+="normal"
+    elif x >= 25 and x <= 29.9:
+        result_string+="kilolu"
+    elif  x >= 30 and x <= 34.9:
+        result_string+="obez"
+    elif x >= 35:
+        result_string+="morbid obez"
+    elif x <= 0 or x > 70:
+        result_string+="kg veya boy yanlış gridiniz tekrar kontrol ediniz !"
+
+    return result_string
+
+
+
+
+window.mainloop()
+
+
+
+
